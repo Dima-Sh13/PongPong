@@ -38,8 +38,7 @@ class Raqueta:
         self.h = h
 
     def dibujar(self, surface):
-        def dibujar_rectangulo(self, pantalla):
-            pg.draw.rect(surface,self.color,(self.pos_x,self.pos_y,self.w,self.h))    
+        pg.draw.rect(surface,self.color,(self.pos_x,self.pos_y,self.w,self.h))    
 
 
 class Pelota:
