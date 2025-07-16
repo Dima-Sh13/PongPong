@@ -19,24 +19,24 @@ pelota1 = Pelota(525,350,(1,1,1),radio=10)
 game= True
 while game:
     valorTasa = tasaRefresco.tick(300)#variable para controlar la velocidad entre tasas
+    #Agregamos Marcadores.
+    #Asignacion de tamanño y fuente
+
+    marcador1_font = pg.font.SysFont("arial",30)
+    marcador2_font = pg.font.SysFont("arial",30)
+
+    marcador1 = marcador1_font.render("10", True, (255,255,255))
+    
+    
+    
+    
     
     for eventos in pg.event.get():
         print(eventos)
         if eventos.type == pg.QUIT:
             game = False
     estadoTeclado = pg.key.get_pressed()
-    #print(estadoTeclado[pg.K_UP])
-    """
-    if estadoTeclado[pg.K_w] == True:
-        raquetaI.pos_y -= 0.50
-    if estadoTeclado[pg.K_s] == True:
-        raquetaI.pos_y += 0.50   
-
-    if estadoTeclado[pg.K_UP] == True:
-        raquetaD.pos_y -= 0.50
-    if estadoTeclado[pg.K_DOWN] == True:
-        raquetaD.pos_y += 0.50
-    """           
+    
     surface.fill(( 25, 133, 32))
     pg.draw.line(surface,(255,255,255),(515,0),(515,700),10)
     pg.draw.circle(surface,(255,255,255),(520,350), 150)
