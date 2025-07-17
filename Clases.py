@@ -45,7 +45,7 @@ class Raqueta:
     def movimiento(self, keyy_U, keyy_D):
         estadoTeclado = pg.key.get_pressed()
         self.p_rebote_Y=[self.pos_y+self.w, self.pos_y+self.h]
-        if estadoTeclado[keyy_U] == True and self.pos_y >= 0  :
+        if estadoTeclado[keyy_U] == True and self.pos_y >= 0:
             self.pos_y -= 1
         if estadoTeclado[keyy_D] == True and self.pos_y <= 700 - self.h:
             self.pos_y += 1 
@@ -65,7 +65,7 @@ class Pelota:
     def dibujar(self,surface):
         pg.draw.circle(surface, self.color,(self.pos_x, self.pos_y), self.radio)
 
-    def movimiento(self, x_max, y_max, p_rauqetax, praquetay):
+    def movimiento(self, x_max, y_max, p_rauqetaxI, praquetayI, p_raquetaxD, praquetaYD):
         """
         self.direccion_x = ra.randint(-10,10)
         self.direccion_y = ra.randint(-10,10)
@@ -86,9 +86,11 @@ class Pelota:
             self.vx *= -1
         if  self.pos_y >= y_max or self.pos_y <= 0:
             self.vy *= -1    
-        if self.p_rebote[0] ==p_rauqetax and self.p_rebote[1]>= praquetay[0] and self.p_rebote[1] <= praquetay[1]:
+        if self.p_rebote[0] ==p_rauqetaxI and self.p_rebote[1]>= praquetayI[0] and self.p_rebote[1] <= praquetayI[1]:
             self.vx *= -1
-        """
-        if posicion_balon[0] ==poscionX_raquetaD and posicion_balon[1]>= posicionY_raquetaD[0] and posicion_balon[1] <= posicionY_raquetaD[1]:
-        vx_balon*= -1
-        """
+    
+        if self.p_rebote[0] ==p_raquetaxD and self.p_rebote[1]>= praquetaYD[0] and self.p_rebote[1] <= praquetaYD[1]:
+            self.vx *= -1
+        
+        def mostrar_marcador(self):
+            pass

@@ -5,7 +5,7 @@ from functions import rebote
 pg.init()
 x_display = 1050; y_display = 700
 surface= pg.display.set_mode((x_display,y_display))
-pg.display.set_caption("Pong")
+pg.display.set_caption("PongPing")
 
 #Definir tasa de refresco en nuestro bucle.
 tasaRefresco = pg.time.Clock()
@@ -23,18 +23,18 @@ while game:
     valorTasa = tasaRefresco.tick(300)#variable para controlar la velocidad entre tasas
     #Agregamos Marcadores.
     #Asignacion de tamanño y fuente
-    """
+    
     marcador1_font = pg.font.SysFont("arial",30)
     marcador2_font = pg.font.SysFont("arial",30)
 
     marcador1 = marcador1_font.render("10", True, (255,255,255))
-    """
     
+    surface.blit(marcador1,(200,100))
     
     
 
     for eventos in pg.event.get():
-        #print(eventos)
+        print(eventos)
         if eventos.type == pg.QUIT:
             game = False
 
@@ -42,17 +42,15 @@ while game:
 
     surface.fill(( 25, 133, 32))
     pg.draw.line(surface,(255,255,255),(515,0),(515,700),10)
-    pg.draw.circle(surface,(255,255,255),(520,350), 150)
-    pg.draw.circle(surface,( 25, 133, 32),(520,350), 140)
+    pg.draw.circle(surface,(255,255,255),(520,350), 120)
+    pg.draw.circle(surface,( 25, 133, 32),(520,350), 110)
     pelota1.dibujar(surface)
     raquetaI.dibujar(surface)
     raquetaD.dibujar(surface)
 
     raquetaI.movimiento(pg.K_w,pg.K_s)
     raquetaD.movimiento(pg.K_UP, pg.K_DOWN)
-    pelota1.movimiento(x_display, y_display,raquetaI.pos_reb_x,raquetaI.p_rebote_Y)
-    rebote(raquetaI.pos_x+ raquetaI.pos_reb_x,raquetaI.pos_reb_x,raquetaI.p_rebote_Y,raquetaD.p_rebote_Y,pelota1.p_rebote, pelota1.vx)
-    print(raquetaD.pos_reb_x, raquetaI.pos_reb_x,raquetaD.p_rebote_Y,pelota1.p_rebote)
+    #pelota1.movimiento(x_display, y_display,raquetaI.pos_reb_x,raquetaI.p_rebote_Y,raquetaD.pos_reb_x - raquetaD.w,raquetaD.p_rebote_Y)
     pg.display.flip()
 
 
