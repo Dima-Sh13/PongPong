@@ -100,39 +100,68 @@ class Pelota:
                 self.arriba <= r.abajo:       
                 self.vx *= -1
 
-
-
-
-
-
     @property
-
-
     def derecha(self):
-
-        return self.pos_x + self.radio
-
-
+        return self.pos_x - self.radio//2
 
     @property
-
     def izquierda(self):
-
         return self.pos_x - self.radio
 
-
-
     @property
-
     def arriba(self):
+
+
+
 
         return self.pos_y - self.radio
 
-
-
     @property
-
     def abajo(self):
+
+
+
         return self.pos_y + self.radio
+
+    def mostrar_marcador(self,pantalla):
+        fuente = pg.font.Font(None,30)
+        jugador1= fuente.render("Jugador 1:",True,color_blanco)
+        jugador2 = fuente.render("Jugador 2:",True,color_blanco)
+        marcador1 = fuente.render(str(self.puntuacion1),True,color_blanco)
+        marcador2 = fuente.render(str(self.puntuacion2),True,color_blanco)
+        pantalla.blit(marcador1,( (screenY//2)+50,50))
+        pantalla.blit(marcador2,((screenX//2)+50,50))  
+        pantalla.blit(jugador1,((screenY//2)-20,20)) 
+        pantalla.blit(jugador2,((screenX//2)+20,20))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

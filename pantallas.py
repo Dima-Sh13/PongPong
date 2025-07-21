@@ -13,20 +13,13 @@ class Partida:
         self.pelota1 = Pelota(screenX//2, screenY//2, radio=15)
         self.raquetaI = Raqueta(0,330,w=20,h=100)
         self.raquetaD = Raqueta(1030,330,w=20,h=100)
+        self.valor_tasa_refresco = 100
 
     def buclePartida(self):
         gameOn = True
         while gameOn:
-            marcador1_font = pg.font.SysFont("arial",30)
-            marcador2_font = pg.font.SysFont("arial",30)
-            self.tasa_refresco.tick(300)
-
-            marcador1 = marcador1_font.render("10", True, (255,255,255))
+            self.tasa_refresco.tick(self.valor_tasa_refresco)
             
-            #self.mainScreen((marcador1,(200,100)))
-            
-            
-
             for eventos in pg.event.get():
                 #print(eventos)
                 if eventos.type == pg.QUIT:
@@ -36,9 +29,9 @@ class Partida:
 
             self.mainScreen.fill(( 25, 133, 32))
             for i in range(0,screenY +20,20):
-                pg.draw.line(self.mainScreen,(255,255,255),(515,0 + i),(515,i+10),10)
-            pg.draw.circle(self.mainScreen,(255,255,255),(520,350), 120)
-            pg.draw.circle(self.mainScreen,( 25, 133, 32),(520,350), 110)
+                pg.draw.line(self.mainScreen,color_blanco,(screenX//2,0 + i),(screenX//2,i+10),10)
+            pg.draw.circle(self.mainScreen,color_blanco,(screenX//2,screenY//2), 120)
+            pg.draw.circle(self.mainScreen,( 25, 133, 32),(screenX//2,screenY//2), 110)
             self.pelota1.dibujar(self.mainScreen)
             self.raquetaI.dibujar(self.mainScreen)
             self.raquetaD.dibujar(self.mainScreen)
@@ -48,9 +41,18 @@ class Partida:
             self.pelota1.mover(screenX, screenY)
 
             self.pelota1.comprobar_choqueV2(self.raquetaD, self.raquetaI)
+            self.pelota1.mostrar_marcador(self.mainScreen)
+            
+            
+            
+            
             pg.display.flip()
 
     pg.quit()
+            
+
+            
+
 
 
 
