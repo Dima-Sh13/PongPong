@@ -1,5 +1,6 @@
 import pygame as pg
 import random as ra
+from PongPingApp.utils import *
 """
 class Figura:
     def __init__(self, pos_x, pos_y, color =(255,255,255),vx=1, vy=1, w=40, h=40, radio =20):
@@ -30,7 +31,7 @@ class Figura:
 """
 
 class Raqueta:
-    def __init__(self, pos_x, pos_y, color =(255,255,255), w=50, h=20):
+    def __init__(self, pos_x, pos_y, color = color_blanco, w=50, h=20):
         self.pos_x = pos_x
         self.pos_y = pos_y
         self.color = color
@@ -47,11 +48,11 @@ class Raqueta:
         self.p_rebote_Y=[self.pos_y+self.w, self.pos_y+self.h]
         if estadoTeclado[keyy_U] == True and self.pos_y >= 0:
             self.pos_y -= 1
-        if estadoTeclado[keyy_D] == True and self.pos_y <= 700 - self.h:
+        if estadoTeclado[keyy_D] == True and self.pos_y <= screenY - self.h:
             self.pos_y += 1 
 
 class Pelota:
-    def __init__(self, pos_x, pos_y, color =(255,255,255),radio =20, vx=1, vy=1):
+    def __init__(self, pos_x, pos_y, color = color_negro,radio =20, vx=1, vy=1):
         self.pos_x = pos_x
         self.pos_y = pos_y
         self.color = color
@@ -63,7 +64,7 @@ class Pelota:
         self.p_rebote =[self.pos_x-self.radio, self.pos_y-self.radio]
         
     def dibujar(self,surface):
-        pg.draw.circle(surface, self.color,(self.pos_x, self.pos_y), self.radio)
+        pg.draw.circle(surface,self.color,(self.pos_x, self.pos_y), self.radio)
 
     def movimiento(self, x_max, y_max, p_rauqetaxI, praquetayI, p_raquetaxD, praquetaYD):
         """
@@ -90,7 +91,7 @@ class Pelota:
             self.vx *= -1
     
         if self.p_rebote[0] ==p_raquetaxD and self.p_rebote[1]>= praquetaYD[0] and self.p_rebote[1] <= praquetaYD[1]:
-            self.vx *= -1
+            self.vx *= 1
         
         def mostrar_marcador(self):
             pass
