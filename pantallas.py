@@ -50,11 +50,53 @@ class Partida:
 
     pg.quit()
             
+class Menu:
+    def __init__(self):
+        pg.init()
+        self.menuScreen = pg.display.set_mode((screenX,screenY))
+        pg.display.set_caption("PongPing")
+        self.font = pg.font.SysFont("Pixellari", 175)
+        self.fontont = self.font.render("Pong Ping", True, color_blanco)
+        counter = 0
+
+    def bucleMenu(self):
+        gameOn = True
+        while gameOn:
+            for eventos in pg.event.get():
+                print(eventos)
+                if eventos.type == pg.QUIT:
+                    gameOn = False
+            
+            self.menuScreen.fill(color_negro)
+            
+            for i in range(20, screenX,50):
+                pg.draw.circle(self.menuScreen,color_blanco,(i,0), 5)
+                for x in range(0, screenY+100, 50):
+                    pg.draw.circle(self.menuScreen,color_blanco,(i,x), 5)
+                
+
+                        
+            
+            self.menuScreen.blit(self.fontont,(150,250))
+
+            
+            pg.display.flip()
+            
+
+    pg.quit()        
+
 
             
 
 
 
 
+
+
+
+
+
+
 juego = Partida()
-juego.buclePartida()
+menu = Menu()
+menu.bucleMenu()

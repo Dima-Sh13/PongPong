@@ -1,4 +1,4 @@
-
+import pygame as pg
 screenX = 1050
 screenY = 700
 color_blanco = (255,255,255)
