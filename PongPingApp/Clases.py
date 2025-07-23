@@ -15,7 +15,7 @@ class Raqueta:
         
     def dibujar(self, surface):
         pg.draw.rect(surface,self.color,(self.pos_x,self.pos_y,self.w,self.h))    
-
+        pg.draw.rect(surface,color_negro,(self.pos_x,self.pos_y,self.w-5,self.h-5))
     def movimiento(self, keyy_U, keyy_D):
         estadoTeclado = pg.key.get_pressed()
         self.p_rebote_Y=[self.pos_y+self.w, self.pos_y+self.h]
@@ -59,7 +59,7 @@ class Pelota:
         self.vy = vy
         self.puntuacion1 = 0
         self.puntuacion2 = 0
-        self.p_rebote =[self.pos_x-self.radio, self.pos_y-self.radio]
+        self.p_rebote =[self.pos_x-self.radio, self.pos_y]
         self.round = False
         
     def dibujar(self,surface):
@@ -109,9 +109,21 @@ class Pelota:
                 self.arriba <= r.abajo:       
                 self.vx *= -1
 
+    def comprobar_choqueV3(self,*raquetas):
+
+        for r in raquetas:
+
+            if self.derecha >= r.poscion and\
+                self.izquierda <= r.derecha and\
+                self.abajo >= r.arriba and\
+                self.arriba <= r.abajo:       
+                self.vx *= -1
+    
+    
+
     @property
     def derecha(self):
-        return self.pos_x - self.radio//2
+        return self.pos_x - self.radio
 
     @property
     def izquierda(self):
