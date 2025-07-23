@@ -60,35 +60,44 @@ class Pelota:
         self.puntuacion1 = 0
         self.puntuacion2 = 0
         self.p_rebote =[self.pos_x-self.radio, self.pos_y-self.radio]
+        self.round = False
         
     def dibujar(self,surface):
         pg.draw.circle(surface,self.color,(self.pos_x, self.pos_y), self.radio)
+        pg.draw.circle(surface,color_blanco,(self.pos_x, self.pos_y), self.radio-5)
+        
            
     def mover(self,x_max=screenX,y_max=screenY):
+        estadoTeclado = pg.key.get_pressed()
+        
+        if estadoTeclado[pg.K_SPACE]:
+            self.round = True     
+        
+        if self.round == True:
+            self.pos_x += self.vx
+
+            self.pos_y += self.vy
 
 
-        self.pos_x += self.vx
 
-        self.pos_y += self.vy
+            if self.pos_x >= x_max+(5*self.radio) or self.pos_x <=0-(5*self.radio):
 
+                if self.pos_x >= x_max+(5*self.radio):
 
+                    self.puntuacion1 +=1
+                    self.round = False
 
-        if self.pos_x >= x_max+(5*self.radio) or self.pos_x <=0-(5*self.radio):
+                elif self.pos_x <=0-(5*self.radio):
 
-            if self.pos_x >= x_max+(5*self.radio):
+                    self.puntuacion2 +=1
+                    self.round = False
 
-                self.puntuacion1 +=1
+                self.pos_x = screenX//2
+                self.pos_y = screenY//2
+                self.vx *= -1
 
-            elif self.pos_x <=0-(5*self.radio):
-
-                self.puntuacion2 +=1
-
-            self.pos_x = screenX//2
-            self.pos_y = screenY//2
-            self.vx *= -1
-
-        if self.pos_y >= y_max-(self.radio) or self.pos_y <=0+(self.radio):
-            self.vy *= -1
+            if self.pos_y >= y_max-(self.radio) or self.pos_y <=0+(self.radio):
+                self.vy *= -1
 
     def comprobar_choqueV2(self,*raquetas):
 
@@ -124,15 +133,18 @@ class Pelota:
         return self.pos_y + self.radio
 
     def mostrar_marcador(self,pantalla):
-        fuente = pg.font.Font(None,30)
+        fuente = pg.font.SysFont("Pixellari",40)
         jugador1= fuente.render("Jugador 1:",True,color_blanco)
         jugador2 = fuente.render("Jugador 2:",True,color_blanco)
         marcador1 = fuente.render(str(self.puntuacion1),True,color_blanco)
         marcador2 = fuente.render(str(self.puntuacion2),True,color_blanco)
-        pantalla.blit(marcador1,( (screenY//2)+50,50))
-        pantalla.blit(marcador2,((screenX//2)+50,50))  
-        pantalla.blit(jugador1,((screenY//2)-20,20)) 
-        pantalla.blit(jugador2,((screenX//2)+20,20))
+        context = fuente.render("Press Space to Start", True, color_blanco)
+        if self.round == False:
+            pantalla.blit(context,(screenX//4, screenY-150))
+        pantalla.blit(marcador1,(screenX-screenX +300, 50))
+        pantalla.blit(marcador2,((screenX-screenX//5+60, screenY-screenY+50)))  
+        pantalla.blit(jugador1,(screenX-screenX+100, 50)) 
+        pantalla.blit(jugador2,((screenX-screenX//3, screenY-screenY+50)))
 
 
 
