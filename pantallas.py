@@ -50,7 +50,7 @@ class Partida:
             
             
             
-            #print(f"PosicionXRaqueta:{self.raquetaI.pos_reb_x_I}, Rebote en Y:{self.raquetaI.p_rebote_Y}, PelotaI:{self.pelota1.izquierda}, pelotaArriba:{self.pelota1.arriba},pelota abajo: {self.pelota1.abajo}") 
+            
             
             pg.display.flip()
 
@@ -101,7 +101,66 @@ class Menu:
 
     pg.quit()        
 
+class MenuV2:
+    def __init__(self):
+        pg.init()
+        self.menuScreen = pg.display.set_mode((screenX,screenY))
+        pg.display.set_caption("PongPing")
+        self.tasa_refresco = pg.time.Clock()
+        self.pelota1 = Pelota(screenX//2, screenY//2, radio=15) 
+        self.raquetaI = Raqueta(0,self.pelota1.pos_y-50,w=20,h=100)
+        self.raquetaD = Raqueta(1030,self.pelota1.pos_y-50,h=100)
+        self.valor_tasa_refresco = 300
+        self.font_title = pg.font.SysFont("Pixellari", 175)
+        self.font_context = pg.font.SysFont("Pixellari", 75)
+        self.fontont = self.font_title.render("Pong Ping", True, color_blanco)
+        self.context = self.font_context.render("Press Any Key", True, color_blanco)
+        self.transparencia = pg.Surface((1050, 700) )
+        self.transparencia.fill( ( 91, 98, 91 ) )
+        self.transparencia.set_alpha(200)
 
+
+    def bucleMenuV2(self):
+        gameOn = True
+        counter = 0
+        while gameOn:
+            self.tasa_refresco.tick(self.valor_tasa_refresco)
+            
+            for eventos in pg.event.get():
+                if eventos.type == pg.KEYDOWN:
+                    juego.buclePartida()
+                
+                if eventos.type == pg.QUIT:
+                    gameOn = False
+
+            estadoTeclado = pg.key.get_pressed()
+
+            self.menuScreen.fill((  28, 126, 28))
+            for i in range(0,screenY +20,20):
+                pg.draw.line(self.menuScreen,color_blanco,(screenX//2,0 + i),(screenX//2,i+10),10)
+            pg.draw.circle(self.menuScreen,color_blanco,(screenX//2,screenY//2), 120)
+            pg.draw.circle(self.menuScreen,( 25, 133, 32),(screenX//2,screenY//2), 110)
+            self.pelota1.dibujar(self.menuScreen)
+            self.raquetaI.dibujar(self.menuScreen)
+            self.raquetaD.dibujar(self.menuScreen)
+
+            self.raquetaI.movimientoMenu(self.pelota1.pos_y)
+            self.raquetaD.movimientoMenu(self.pelota1.pos_y)
+            self.pelota1.moverMenu(screenX, screenY)
+            
+
+            self.pelota1.comprobar_choqueV2(self.raquetaD, self.raquetaI)
+            self.menuScreen.blit(self.transparencia,(0,0))
+            self.menuScreen.blit(self.fontont,(150,150))
+            
+            if counter < 300:
+                    self.menuScreen.blit(self.context, (screenX//4, 450))
+            if counter > 600:
+                counter = 0        
+            counter += 1
+            
+        
+            pg.display.flip()
             
 
 
