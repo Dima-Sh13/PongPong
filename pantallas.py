@@ -1,6 +1,6 @@
 import pygame as pg
 
-from PongPingApp.Clases import Raqueta, Pelota
+from PongPingApp.Clases import Pelota, Raqueta
 from PongPingApp.utils import *
 
 class Partida:  
@@ -13,7 +13,7 @@ class Partida:
         self.pelota1 = Pelota(screenX//2, screenY//2, radio=15) 
         self.raquetaI = Raqueta(0,330,w=20,h=100)
         self.raquetaD = Raqueta(1030,330,w=20,h=100)
-        self.valor_tasa_refresco = 300
+        self.valor_tasa_refresco = 200
 
     def buclePartida(self):
         gameOn = True
@@ -33,23 +33,24 @@ class Partida:
                 pg.draw.line(self.mainScreen,color_blanco,(screenX//2,0 + i),(screenX//2,i+10),10)
             pg.draw.circle(self.mainScreen,color_blanco,(screenX//2,screenY//2), 120)
             pg.draw.circle(self.mainScreen,( 25, 133, 32),(screenX//2,screenY//2), 110)
+            self.pelota1.mostrar_marcador(self.mainScreen)
+
             self.pelota1.dibujar(self.mainScreen)
             self.raquetaI.dibujar(self.mainScreen)
             self.raquetaD.dibujar(self.mainScreen)
 
+            
             self.raquetaI.movimiento(pg.K_w,pg.K_s)
             self.raquetaD.movimiento(pg.K_UP, pg.K_DOWN)
-           
             self.pelota1.mover(screenX, screenY)
             
 
-            self.pelota1.comprobar_choqueV2(self.raquetaD, self.raquetaI)
-            self.pelota1.mostrar_marcador(self.mainScreen)
-
+            self.pelota1.comprobar_choqueV3(self.raquetaD, self.raquetaI)
             
             
             
             
+            #print(f"PosicionXRaqueta:{self.raquetaI.pos_reb_x_I}, Rebote en Y:{self.raquetaI.p_rebote_Y}, PelotaI:{self.pelota1.izquierda}, pelotaArriba:{self.pelota1.arriba},pelota abajo: {self.pelota1.abajo}") 
             
             pg.display.flip()
 
@@ -62,11 +63,11 @@ class Menu:
         pg.display.set_caption("PongPing")
         self.font_title = pg.font.SysFont("Pixellari", 175)
         self.font_context = pg.font.SysFont("Pixellari", 75)
-        self.fontont = self.font_title.render("Pong Ping", True, color_blanco,)
+        self.fontont = self.font_title.render("Pong Ping", True, color_blanco)
         self.tasa_refresco = pg.time.Clock()
         self.valor_tasa_refresco = 5
         self.context = self.font_context.render("Press Any Key", True, color_blanco)
-
+        
     def bucleMenu(self):
         gameOn = True
         p_y= 10
@@ -114,5 +115,5 @@ class Menu:
 
 juego = Partida()
 menu = Menu()
-menu.bucleMenu()
 
+menu.bucleMenu()
