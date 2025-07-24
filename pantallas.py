@@ -174,5 +174,5 @@ class MenuV2:
 
 juego = Partida()
 menu = Menu()
-
-menu.bucleMenu()
+menu2 = MenuV2()
+menu2.bucleMenuV2()
