@@ -47,6 +47,7 @@ class Partida:
 
             self.pelota1.comprobar_choqueV3(self.raquetaD, self.raquetaI)
             
+
             
             
             
@@ -127,6 +128,7 @@ class MenuV2:
             self.tasa_refresco.tick(self.valor_tasa_refresco)
             
             for eventos in pg.event.get():
+                
                 if eventos.type == pg.KEYDOWN:
                     juego.buclePartida()
                 
@@ -159,7 +161,9 @@ class MenuV2:
                 counter = 0        
             counter += 1
             
-        
+            posicionRaton = pg.mouse.get_pos()
+            
+
             pg.display.flip()
             
 
