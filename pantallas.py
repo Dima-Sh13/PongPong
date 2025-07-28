@@ -162,6 +162,9 @@ class MenuV2:
             counter += 1
             
             posicionRaton = pg.mouse.get_pos()
+            print(posicionRaton)
+            if posicionRaton == (100,100):
+                print("esto pasa")
             
 
             pg.display.flip()
