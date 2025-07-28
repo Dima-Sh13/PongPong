@@ -65,6 +65,7 @@ class Pelota:
         self.p_rebote_Y_U = self.pos_y - radio
         self.p_rebote_Y_D = self.pos_y + radio
         self.round = False
+        self.puntuacion = 0
         
     def dibujar(self,surface):
         pg.draw.circle(surface,self.color,(self.pos_x, self.pos_y), self.radio)
@@ -186,8 +187,31 @@ class Pelota:
         pantalla.blit(marcador2,(screenX-325,225))  
         pantalla.blit(jugador1,(screenX-screenX+100, 50)) 
         pantalla.blit(jugador2,((screenX-screenX//3, screenY-screenY+50)))
+
+    def mostrar_marcador_solo(self,pantalla, counter):
+        
+        self.puntuacion_solo = "{:0>9d}".format(self.puntuacion)
+        
+        if self.round == True:
+            if counter == 200:
+                self.puntuacion += 1
+                
+
+
+        fuente1 = pg.font.SysFont("Pixellari",40)
+        
+       
+        marcador1 = fuente1.render(str(self.puntuacion_solo),True,color_blanco)
+        
+        context = fuente1.render("Press Space to Start", True, color_blanco)
+        if self.round == False:
+            pantalla.blit(context,(screenX//4, screenY-150))
+        pantalla.blit(marcador1,(100, 100))
         
         
+       
+       
+       
 
 
 
