@@ -152,17 +152,35 @@ class MenuV2:
                     if eventos.key == pg.K_RETURN and self.posicion_bloque == screenY//2 +15 :
                         if menuMain == True:
                             juego.buclePartida()
-                        if menuSettings == True:
+                        elif menuSettings == True:
                              menuSettings = False
-                             menuBallSpeed = True    
+                             menuBallSpeed = True
+                        elif menuBallSpeed == True:
+                             juego.pelota1.vx = 1
+                             juego.raquetaI.vy =1
+                             juego.raquetaD.vy =1
+                             menuBallSpeed = False
+                             menuSettings = True         
                     
                     elif eventos.key == pg.K_RETURN and self.posicion_bloque == screenY//2 + (self.font_menu + 15):
                         menuMain = False
                         menuSettings = True
+                        if menuBallSpeed == True:
+                            juego.pelota1.vx = 2
+                            juego.raquetaI.vy =2
+                            juego.raquetaD.vy =2
+                            menuBallSpeed = False
+                            menuSettings = True 
+
                         
                     
                     elif eventos.key == pg.K_RETURN and self.posicion_bloque == screenY//2 + (self.font_menu*2 + 15):
-                        pass
+                        if menuBallSpeed == True:
+                            juego.pelota1.vx = 3
+                            juego.raquetaI.vy =3
+                            juego.raquetaD.vy =3
+                            menuBallSpeed = False
+                            menuSettings = True 
                     
                     elif eventos.key == pg.K_RETURN and self.posicion_bloque == screenY//2 + (self.font_menu*3 + 15):
                         if menuMain == True:

@@ -13,6 +13,7 @@ class Raqueta:
         self.pos_reb_x_I = self.pos_x + self.w
         self.pos_reb_x_D = self.pos_x 
         self.p_rebote_Y =[self.pos_y,self.pos_y+self.h]
+        self.vy = 1
         
     def dibujar(self, surface):
         pg.draw.rect(surface,self.color,(self.pos_x,self.pos_y,self.w,self.h))    
@@ -22,9 +23,9 @@ class Raqueta:
         self.p_rebote_Y =[self.pos_y,self.pos_y+self.h]
         estadoTeclado = pg.key.get_pressed()
         if estadoTeclado[keyy_U] == True and self.pos_y > 0:
-            self.pos_y -= 1
+            self.pos_y -= self.vy
         if estadoTeclado[keyy_D] == True and self.pos_y < screenY - self.h:
-            self.pos_y += 1 
+            self.pos_y += self.vy 
     def movimientoMenu(self, pos_pelota):
         self.pos_y = pos_pelota - 50
     @property
