@@ -94,15 +94,16 @@ class MenuV2:
             self.menuScreen.blit(self.font_main2,(screenX//3,screenY//2 +self.font_menu) )
             self.menuScreen.blit(self.font_main3,(screenX//3,screenY//2 +self.font_menu*2) )
             self.menuScreen.blit(self.font_main4,(screenX//3,screenY//2 +self.font_menu*3) )
+            pg.draw.rect(self.menuScreen,self.color_bloque,(screenX//3 - 30,self.posicion_bloque,15,15))
             if self.counter < 300:
-                    pg.draw.rect(self.menuScreen,color_blanco,(screenX//3 - 30,self.posicion_bloque,15,15))
+                    self.color_bloque = color_blanco
             if self.counter > 600:
+                self.color_bloque = color_campo
                 self.counter = 0        
             self.counter += 1        
-
     def menu_setting(self):
         self.font_setting1 = self.font_font_main.render("Ball Speed", True, color_blanco)
-        self.font_setting2 = self.font_font_main.render("Paddle Size:",True, color_blanco)
+        self.font_setting2 = self.font_font_main.render("Paddle Size",True, color_blanco)
         self.font_setting3 = self.font_font_main.render("Music", True,color_blanco)
         self.font_setting4 = self.font_font_main.render("Back", True, color_blanco)
         self.menuScreen.blit(self.font_setting1, (screenX//3,screenY//2))
@@ -110,21 +111,23 @@ class MenuV2:
         self.menuScreen.blit(self.font_setting3,(screenX//3,screenY//2 +self.font_menu*2) )
         self.menuScreen.blit(self.font_setting4,(screenX//3,screenY//2 +self.font_menu*3) )
         pg.draw.rect(self.menuScreen,self.color_bloque,(screenX//3 - 30,self.posicion_bloque,15,15))
-        for eventos in pg.event.get():
-                if eventos.type == pg.KEYDOWN:
-                    if eventos.key == pg.K_RETURN and self.posicion_bloque == screenY//2 +15 :
-                        pass
-                    
-                    elif eventos.key == pg.K_RETURN and self.posicion_bloque == screenY//2 + (self.font_menu + 15):
-                        menu2.menu_setting()
-                    
-                    elif eventos.key == pg.K_RETURN and self.posicion_bloque == screenY//2 + (self.font_menu*2 + 15):
-                        pass
-
-                    elif eventos.key == pg.K_RETURN and self.posicion_bloque == screenY//2 + (self.font_menu*3 + 15):
-                        self.menu_main()
-
-
+        
+        if self.counter < 300:
+                    self.color_bloque = color_blanco
+        if self.counter > 600:
+                self.color_bloque = color_campo
+                self.counter = 0        
+        self.counter += 1        
+    def menu_ball_speed(self):
+        self.font_setting_ball = self.font_font_main.render("Slow", True, color_blanco)
+        self.font_setting_ball2 = self.font_font_main.render("Normal", True, color_blanco)
+        self.font_setting_ball3 = self.font_font_main.render("Fast", True, color_blanco)
+        self.font_setting_ball4 = self.font_font_main.render("Back", True, color_blanco)
+        self.menuScreen.blit(self.font_setting_ball, (screenX//3,screenY//2))
+        self.menuScreen.blit(self.font_setting_ball2,(screenX//3,screenY//2 +self.font_menu) )
+        self.menuScreen.blit(self.font_setting_ball3,(screenX//3,screenY//2 +self.font_menu*2) )
+        self.menuScreen.blit(self.font_setting_ball4,(screenX//3,screenY//2 +self.font_menu*3) )
+        pg.draw.rect(self.menuScreen,self.color_bloque,(screenX//3 - 30,self.posicion_bloque,15,15))
 
 
 
@@ -139,6 +142,7 @@ class MenuV2:
         gameOn = True
         menuMain = True
         menuSettings = False
+        menuBallSpeed = False
         while gameOn:
             estadoTeclado = pg.key.get_pressed()
             self.tasa_refresco.tick(self.valor_tasa_refresco)
@@ -146,11 +150,16 @@ class MenuV2:
             for eventos in pg.event.get():
                 if eventos.type == pg.KEYDOWN:
                     if eventos.key == pg.K_RETURN and self.posicion_bloque == screenY//2 +15 :
-                        juego.buclePartida()
+                        if menuMain == True:
+                            juego.buclePartida()
+                        if menuSettings == True:
+                             menuSettings = False
+                             menuBallSpeed = True    
                     
                     elif eventos.key == pg.K_RETURN and self.posicion_bloque == screenY//2 + (self.font_menu + 15):
                         menuMain = False
-                        menuSettings = True 
+                        menuSettings = True
+                        
                     
                     elif eventos.key == pg.K_RETURN and self.posicion_bloque == screenY//2 + (self.font_menu*2 + 15):
                         pass
@@ -158,9 +167,12 @@ class MenuV2:
                     elif eventos.key == pg.K_RETURN and self.posicion_bloque == screenY//2 + (self.font_menu*3 + 15):
                         if menuMain == True:
                             gameOn = False
-                        if menuSettings == True:
+                        elif menuSettings == True:
                              menuMain = True
-                             menuSettings = False    
+                             menuSettings = False 
+                        elif menuBallSpeed == True:
+                             menuSettings = True
+                             menuBallSpeed = False
                 if eventos.type == pg.QUIT:
                     gameOn = False
                 if eventos.type == pg.KEYDOWN:
@@ -193,7 +205,8 @@ class MenuV2:
                 self.menu_main()  
             if menuSettings == True:
                 self.menu_setting()
-                   
+            if menuBallSpeed == True:
+                 self.menu_ball_speed()       
             
                         
                     
