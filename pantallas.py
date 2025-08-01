@@ -156,9 +156,7 @@ class MenuV2:
                              menuSettings = False
                              menuBallSpeed = True
                         elif menuBallSpeed == True:
-                             juego.pelota1.vx = 1
-                             juego.raquetaI.vy =1
-                             juego.raquetaD.vy =1
+                             juego.valor_tasa_refresco = 150
                              menuBallSpeed = False
                              menuSettings = True         
                     
@@ -166,9 +164,7 @@ class MenuV2:
                         menuMain = False
                         menuSettings = True
                         if menuBallSpeed == True:
-                            juego.pelota1.vx = 2
-                            juego.raquetaI.vy =2
-                            juego.raquetaD.vy =2
+                            juego.valor_tasa_refresco = 200
                             menuBallSpeed = False
                             menuSettings = True 
 
@@ -176,9 +172,7 @@ class MenuV2:
                     
                     elif eventos.key == pg.K_RETURN and self.posicion_bloque == screenY//2 + (self.font_menu*2 + 15):
                         if menuBallSpeed == True:
-                            juego.pelota1.vx = 3
-                            juego.raquetaI.vy =3
-                            juego.raquetaD.vy =3
+                            juego.valor_tasa_refresco = 250
                             menuBallSpeed = False
                             menuSettings = True 
                     
@@ -227,8 +221,7 @@ class MenuV2:
                  self.menu_ball_speed()       
             
                         
-                    
-            print(self.posicion_bloque,screenY//2 + (self.font_menu + 15) )
+                  
             pg.display.flip()
 
 class PartidaSolo(Partida):
@@ -298,8 +291,11 @@ class PartidaSolo(Partida):
 
 
 
-juego = Partida()
+juegoSolo = PartidaSolo()
+juego= Partida()
+#juego.buclePartida()
 menu = MenuV2()
 menu2 = MenuV2()
 menu2.bucleMenuV2()
-#menu.menu_setting()
+
+            
