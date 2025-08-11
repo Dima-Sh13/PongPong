@@ -14,6 +14,8 @@ class Partida:
         self.raquetaI = Raqueta(0,330,w=20,h=100)
         self.raquetaD = Raqueta(1030,330,w=20,h=100)
         self.valor_tasa_refresco = 200
+        self.n_jugador1 = input("Introducir Jugador uno")
+        self.n_jugador2 = input("Introducir nombre del jugador 2")
 
     def buclePartida(self):
         gameOn = True
@@ -250,7 +252,7 @@ class PartidaSolo(Partida):
 
             estadoTeclado = pg.key.get_pressed()
 
-            self.mainScreen.fill((  28, 126, 28))
+            self.mainScreen.fill(color_campo)
             for i in range(0,screenY +20,20):
                 pg.draw.line(self.mainScreen,color_blanco,(screenX//2,0 + i),(screenX//2,i+10),10)
             pg.draw.circle(self.mainScreen,color_blanco,(screenX//2,screenY//2), 120)
