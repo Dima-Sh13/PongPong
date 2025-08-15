@@ -14,8 +14,8 @@ class Partida:
         self.raquetaI = Raqueta(0,330,w=20,h=100)
         self.raquetaD = Raqueta(1030,330,w=20,h=100)
         self.valor_tasa_refresco = 200
-        self.n_jugador1 = input("Introducir Jugador uno")
-        self.n_jugador2 = input("Introducir nombre del jugador 2")
+        #self.n_jugador1 = input("Introducir Jugador uno")
+        #self.n_jugador2 = input("Introducir nombre del jugador 2")
 
     def buclePartida(self):
         gameOn = True
@@ -27,6 +27,8 @@ class Partida:
                 #print(eventos)
                 if eventos.type == pg.QUIT:
                     gameOn = False
+                if eventos.key == pg.K_ESCAPE:
+                     gameOn = False        
 
             estadoTeclado = pg.key.get_pressed()
 
@@ -139,12 +141,28 @@ class MenuV2:
                 self.color_bloque = color_campo
                 self.counter = 0        
         self.counter += 1        
+    def menu_partida(self):
+        self.font_main = self.font_font_main.render("Solo Mode", True, color_blanco)
+        self.font_main2 = self.font_font_main.render("VS. Mode", True, color_blanco)
+        self.font_main3 = self.font_font_main.render("Back", True, color_blanco)
+        self.menuScreen.blit(self.font_main, (screenX//3,screenY//2))
+        self.menuScreen.blit(self.font_main2,(screenX//3,screenY//2 +self.font_menu) )
+        self.menuScreen.blit(self.font_main3,(screenX//3,screenY//2 +self.font_menu*2) )
+        pg.draw.rect(self.menuScreen,self.color_bloque,(screenX//3 - 30,self.posicion_bloque,15,15))
+        if self.counter < 300:
+                    self.color_bloque = color_blanco
+        if self.counter > 600:
+                self.color_bloque = color_campo
+                self.counter = 0        
+        self.counter += 1        
+         
 
     def bucleMenuV2(self):
         gameOn = True
         menuMain = True
         menuSettings = False
         menuBallSpeed = False
+        menuPartida = False
         while gameOn:
             estadoTeclado = pg.key.get_pressed()
             self.tasa_refresco.tick(self.valor_tasa_refresco)
@@ -153,7 +171,10 @@ class MenuV2:
                 if eventos.type == pg.KEYDOWN:
                     if eventos.key == pg.K_RETURN and self.posicion_bloque == screenY//2 +15 :
                         if menuMain == True:
-                            juego.buclePartida()
+                            menuMain = False
+                            menuPartida = True
+                        elif menuPartida == True:
+                            juegoSolo.buclePartida()
                         elif menuSettings == True:
                              menuSettings = False
                              menuBallSpeed = True
@@ -164,12 +185,16 @@ class MenuV2:
                     
                     elif eventos.key == pg.K_RETURN and self.posicion_bloque == screenY//2 + (self.font_menu + 15):
                         menuMain = False
-                        menuSettings = True
+                        if menuPartida == False:
+                            menuSettings = True
                         if menuBallSpeed == True:
                             juego.valor_tasa_refresco = 200
                             menuBallSpeed = False
                             menuSettings = True 
-
+                        elif menuPartida == True:
+                            menuPartida = False
+                            juego.buclePartida() 
+                            menuPartida = True    
                         
                     
                     elif eventos.key == pg.K_RETURN and self.posicion_bloque == screenY//2 + (self.font_menu*2 + 15):
@@ -177,7 +202,9 @@ class MenuV2:
                             juego.valor_tasa_refresco = 250
                             menuBallSpeed = False
                             menuSettings = True 
-                    
+                        elif menuPartida == True:
+                             menuPartida = False
+                             menuMain = True
                     elif eventos.key == pg.K_RETURN and self.posicion_bloque == screenY//2 + (self.font_menu*3 + 15):
                         if menuMain == True:
                             gameOn = False
@@ -187,6 +214,7 @@ class MenuV2:
                         elif menuBallSpeed == True:
                              menuSettings = True
                              menuBallSpeed = False
+                        
                 if eventos.type == pg.QUIT:
                     gameOn = False
                 if eventos.type == pg.KEYDOWN:
@@ -220,7 +248,10 @@ class MenuV2:
             if menuSettings == True:
                 self.menu_setting()
             if menuBallSpeed == True:
-                 self.menu_ball_speed()       
+                 self.menu_ball_speed()
+            if menuPartida == True:
+                 self.menu_partida()
+
             
                         
                   
@@ -249,6 +280,8 @@ class PartidaSolo(Partida):
                 
                 if eventos.type == pg.QUIT:
                     gameOn = False
+                if eventos.key == pg.K_ESCAPE:
+                     gameOn = False    
 
             estadoTeclado = pg.key.get_pressed()
 
