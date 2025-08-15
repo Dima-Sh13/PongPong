@@ -35,5 +35,14 @@ def draw_field_tennis(mainScreen):
         pg.draw.line(mainScreen,color_blanco,(screenX//4*2,0),(screenX//4*2,screenY),7)
         pg.draw.line(mainScreen,color_blanco,(screenX//4-50,screenY//2),(screenX//4*3+50,screenY//2),7)
 
-
+def draw_field_BB(mainScreen):
+        background = pg.image.load("BB.jpg")
+        background = pg.transform.scale(background,(screenX,screenY))
+        mainScreen.blit(background,(0,0))
+        pg.draw.line(mainScreen,color_negro,(screenX//2, 0),(screenX//2,screenY),7)
+        pg.draw.circle(mainScreen,color_negro,(screenX//2,screenY//2),100,7)
+        pg.draw.line(mainScreen,color_negro,(20,20),(screenX-20,20),7)
+        pg.draw.line(mainScreen,color_negro,(20,screenY-20),(screenX-20,screenY-20),7)
+        pg.draw.line(mainScreen,color_negro,(20,17),(20,screenY-17),7)
+        pg.draw.line(mainScreen,color_negro,(screenX-20,17),(screenX-20,screenY-17),7) 
    
