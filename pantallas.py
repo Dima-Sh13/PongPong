@@ -2,7 +2,7 @@ import pygame as pg
 
 from PongPingApp.Clases import Pelota, Raqueta
 from PongPingApp.utils import *
-
+from functions import draw_field_BB, draw_field_tennis,draw_pong_field
 class Partida:  
     def __init__(self):
         pg.init()
@@ -27,16 +27,12 @@ class Partida:
                 #print(eventos)
                 if eventos.type == pg.QUIT:
                     gameOn = False
-                if eventos.key == pg.K_ESCAPE:
-                     gameOn = False        
+                #if eventos.key == pg.K_ESCAPE:
+                     #gameOn = False        
 
             estadoTeclado = pg.key.get_pressed()
 
-            self.mainScreen.fill((  28, 126, 28))
-            for i in range(0,screenY +20,20):
-                pg.draw.line(self.mainScreen,color_blanco,(screenX//2,0 + i),(screenX//2,i+10),10)
-            pg.draw.circle(self.mainScreen,color_blanco,(screenX//2,screenY//2), 120)
-            pg.draw.circle(self.mainScreen,( 25, 133, 32),(screenX//2,screenY//2), 110)
+            draw_pong_field(self.mainScreen)
             self.pelota1.mostrar_marcador(self.mainScreen)
 
             self.pelota1.dibujar(self.mainScreen)

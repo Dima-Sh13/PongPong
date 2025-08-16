@@ -45,4 +45,20 @@ def draw_field_BB(mainScreen):
         pg.draw.line(mainScreen,color_negro,(20,screenY-20),(screenX-20,screenY-20),7)
         pg.draw.line(mainScreen,color_negro,(20,17),(20,screenY-17),7)
         pg.draw.line(mainScreen,color_negro,(screenX-20,17),(screenX-20,screenY-17),7) 
-   
+        pg.draw.circle(mainScreen,color_negro,(20, screenY//2),screenY//3, 7)
+        pg.draw.circle(mainScreen,color_negro,(screenX-20, screenY//2),screenY//3, 7)
+        pg.draw.circle(mainScreen,color_negro,(screenX//7,screenY//2),75,7)
+        pg.draw.line(mainScreen,color_negro,(0, screenY//2-100),(screenX//7,screenY//2-73),7)
+        pg.draw.line(mainScreen,color_negro,(0, screenY//2+100),(screenX//7,screenY//2+73),7)
+        pg.draw.circle(mainScreen,color_negro,(screenX-screenX//7,screenY//2),75,7)
+        pg.draw.line(mainScreen,color_negro,(screenX, screenY//2-100),(screenX-screenX//7,screenY//2-73),7)
+        pg.draw.line(mainScreen,color_negro,(screenX, screenY//2+100),(screenX-screenX//7,screenY//2+73),7)
+
+
+def draw_pong_field(mainScreen):
+        mainScreen.fill((  28, 126, 28))
+        for i in range(0,screenY +20,20):
+                pg.draw.line(mainScreen,color_blanco,(screenX//2,0 + i),(screenX//2,i+10),10)
+        pg.draw.circle(mainScreen,color_blanco,(screenX//2,screenY//2), 120)
+        pg.draw.circle(mainScreen,( 25, 133, 32),(screenX//2,screenY//2), 110)
+        
