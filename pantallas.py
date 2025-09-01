@@ -276,8 +276,10 @@ class PartidaSolo(Partida):
                 
                 if i.type == pg.QUIT:
                     gameOn = False
-                if i.key == pg.K_ESCAPE:
-                     gameOn = False    
+                if i.type == pg.KEYDOWN:
+                    if i.key == pg.K_ESCAPE:
+                         gameOn = False    
+                
 
             estadoTeclado = pg.key.get_pressed()
 
