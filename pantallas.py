@@ -265,6 +265,7 @@ class PartidaSolo(Partida):
         self.raquetaD = Raqueta(1030,0,w=20,h=700)
         self.valor_tasa_refresco = 200
         self.counter = 0
+        
 
     def buclePartida(self):
         gameOn = True
@@ -308,7 +309,7 @@ class PartidaSolo(Partida):
                 self.counter = 0
             
             
-            print(self.pelota1.puntuacion_solo)
+            
             
             pg.display.flip()
 
@@ -326,7 +327,7 @@ class MenuMenu():
 
 
 juegoSolo = PartidaSolo()
-juego= Partida()
+juego = Partida()
 #juego.buclePartida()
 menu = MenuV2()
 menu2 = MenuV2()

@@ -210,7 +210,13 @@ class Pelota:
         pantalla.blit(marcador1,(100, 100))
         
         
-       
+class Marcador():
+    def __init__(self, n_jugador1, n_jugador2):
+        self.j_izq = n_jugador1
+        self.j_drch = n_jugador2
+
+    def dibujar(self, mainScreen):
+        pg.draw.polygon(mainScreen, color_negro, )       
        
        
 
