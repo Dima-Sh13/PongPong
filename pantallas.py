@@ -14,8 +14,8 @@ class Partida:
         self.raquetaI = Raqueta(0,330,w=20,h=100)
         self.raquetaD = Raqueta(1030,330,w=20,h=100)
         self.valor_tasa_refresco = 200
-        self.n_jugador1 = input("Introducir Jugador uno")
-        self.n_jugador2 = input("Introducir nombre del jugador 2")
+        #self.n_jugador1 = input("Introducir Jugador uno")
+        #self.n_jugador2 = input("Introducir nombre del jugador 2")
 
     def buclePartida(self):
         gameOn = True
@@ -284,7 +284,8 @@ class PartidaSolo(Partida):
     pg.quit()
 
 
-
+class MenuMenu():
+     pass
 
 
 
