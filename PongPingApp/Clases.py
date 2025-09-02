@@ -211,14 +211,27 @@ class Pelota:
         
         
 class Marcador():
-    def __init__(self, n_jugador1, n_jugador2):
+    def __init__(self, n_jugador1, n_jugador2, score1, score2):
         self.j_izq = n_jugador1
         self.j_drch = n_jugador2
+        self.font1 = pg.font.SysFont("Pixellari", 45)
+        self.score_p1 = score1
+        self.score_p2 = score2
 
     def dibujar(self, mainScreen):
-        pg.draw.polygon(mainScreen, color_negro, [(screenX//4,0),(screenX//4+50,0),(screenX//4+50,50)] )
-        pg.draw.polygon(mainScreen, color_negro, [(screenX//4*2,0),(screenX//4*2+50,0),(screenX//4*2-50,50)] )       
-       
+        pg.draw.polygon(mainScreen, color_negro, [(screenX//4,0),(screenX//4 +50,0),(screenX//4 +50,50)] )
+        pg.draw.polygon(mainScreen, color_negro, [(screenX//4*3,0),(screenX//4*3-50,0),(screenX//4*3-50,50)] )  
+        pg.draw.rect(mainScreen, color_negro, (screenX//4 +50,0,screenX//4-100, 51))
+        for i in range(0, 50,5 ):
+            pg.draw.line(mainScreen, color_blanco, (screenX//2+10,i),(screenX//2+10,i),2)    
+        self.font_p1 = self.font1.render(str(self.score_p1), True, color_blanco)
+        self.font_p2 = self.font1.render(str(self.score_p2), True, color_blanco )
+        self.font_n1 = self.font1.render((self.j_izq), True, color_blanco)
+        self.font_n2 = self.font1.render((self.j_drch), True, color_blanco)
+        mainScreen.blit(self.font_p1, (screenX//2 -25, 10))
+        mainScreen.blit(self.font_p2, (screenX//2 +25, 10))
+        mainScreen.blit(self.font_n1, (screenX//4 +75, 10))
+        mainScreen.blit(self.font_n1, (screenX//2 +75, 10))
        
 
 
