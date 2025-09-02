@@ -216,7 +216,8 @@ class Marcador():
         self.j_drch = n_jugador2
 
     def dibujar(self, mainScreen):
-        pg.draw.polygon(mainScreen, color_negro, )       
+        pg.draw.polygon(mainScreen, color_negro, [(screenX//4,0),(screenX//4+50,0),(screenX//4+50,50)] )
+        pg.draw.polygon(mainScreen, color_negro, [(screenX//4*2,0),(screenX//4*2+50,0),(screenX//4*2-50,50)] )       
        
        
 
