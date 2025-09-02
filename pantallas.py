@@ -1,6 +1,6 @@
 import pygame as pg
 
-from PongPingApp.Clases import Pelota, Raqueta
+from PongPingApp.Clases import Pelota, Raqueta, Marcador
 from PongPingApp.utils import *
 from functions import draw_field_BB, draw_field_tennis,draw_pong_field
 class Partida:  
@@ -33,8 +33,8 @@ class Partida:
             estadoTeclado = pg.key.get_pressed()
 
             draw_pong_field(self.mainScreen)
-            self.pelota1.mostrar_marcador(self.mainScreen)
-
+            marcador = Marcador("Dima", "Mina", self.pelota1.puntuacion1, self.pelota1.puntuacion2)
+            marcador.dibujar(self.mainScreen)
             self.pelota1.dibujar(self.mainScreen)
             self.raquetaI.dibujar(self.mainScreen)
             self.raquetaD.dibujar(self.mainScreen)
