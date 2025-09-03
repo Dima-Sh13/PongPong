@@ -234,7 +234,7 @@ class Marcador():
         mainScreen.blit(self.font_n2, (screenX//2 +100, 10))
        
 class Boton():
-    def __init__(self,name, w,h, pos):
+    def __init__(self,name, pos, w= 100, h= 50):
         self.name = name
         self.pos = pos
         self.w = w
