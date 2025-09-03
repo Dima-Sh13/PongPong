@@ -267,6 +267,7 @@ class Cursor():
                         if self.pos > pos_cursor_y[0]: 
                             self.index -=1
         
+        
         pg.draw.rect(screen,color_blanco,(pos_cursor_x,self.pos,15,15))
         
         
