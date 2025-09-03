@@ -1,5 +1,6 @@
 from Clases import Boton, Cursor
 from utils import *
+from functions import menu_controller
 #from pantallas import Partida, PartidaSolo, MenuV2
 """
 class Marcador():
@@ -44,7 +45,7 @@ pygame.display.set_caption("Ventana con fondo blanco")
 
 # Definimos el color blanco en formato RGB
 BLANCO = (255, 255, 255)
-
+index = 0
 # Bucle principal del juego
 ejecutando = True
 while ejecutando:
@@ -59,11 +60,11 @@ while ejecutando:
     #objeto.dibujar(ventana)
     boton1 = Boton("Settings",100,50,pos_1 )
     boton2 = Boton("Records", 100, 50, pos_2)
-    #boton1.show(ventana)
-    #boton2.show(ventana)
+    boton1.show(ventana)
+    boton2.show(ventana)
     
     
-    cursor.show(ventana)
+    
     
     # Actualizamos la pantalla
     pygame.display.flip()

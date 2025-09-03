@@ -3,7 +3,7 @@ import random as ra
 from utils import *
 
 
-class Raqueta:
+class Raqueta():
     def __init__(self, pos_x, pos_y, color = color_blanco, w=20, h=100):
         self.pos_x = pos_x
         self.pos_y = pos_y
@@ -53,7 +53,7 @@ class Raqueta:
 
         return self.pos_y + (self.h//2)     
 
-class Pelota:
+class Pelota():
     def __init__(self, pos_x, pos_y, color = color_negro,radio =20, vx=1, vy=1):
         self.pos_x = pos_x
         self.pos_y = pos_y
@@ -257,18 +257,16 @@ class Cursor():
     def show(self, screen):
         self.pos = pos_cursor_y[self.index]
         for eventos in pg.event.get():
-             print( eventos, self.index, self.pos)
              if eventos.type == pg.KEYDOWN:
                     if eventos.key == pg.K_DOWN:
-                       
                        if self.pos < pos_cursor_y[3]:
                             self.index += 1
                     if eventos.key == pg.K_UP:
                         if self.pos > pos_cursor_y[0]: 
                             self.index -=1
-        
-        
         pg.draw.rect(screen,color_blanco,(pos_cursor_x,self.pos,15,15))
+        
+  
         
         
     

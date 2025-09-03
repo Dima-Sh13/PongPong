@@ -61,4 +61,19 @@ def draw_pong_field(mainScreen):
                 pg.draw.line(mainScreen,color_blanco,(screenX//2,0 + i),(screenX//2,i+10),10)
         pg.draw.circle(mainScreen,color_blanco,(screenX//2,screenY//2), 120)
         pg.draw.circle(mainScreen,( 25, 133, 32),(screenX//2,screenY//2), 110)
-        
+
+
+def menu_controller(index):
+       
+       pos = pos_cursor_y[index]
+       for eventos in pg.event.get():
+             if eventos.type == pg.KEYDOWN:
+                    if eventos.key == pg.K_DOWN:
+                       if pos < pos_cursor_y[3]:
+                            index += 1
+                    if eventos.key == pg.K_UP:
+                        if pos > pos_cursor_y[0]: 
+                            index -=1
+       return index
+
+                    

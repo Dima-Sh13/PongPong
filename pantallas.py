@@ -1,6 +1,6 @@
 import pygame as pg
 
-from Clases import Pelota, Raqueta, Marcador
+from Clases import Pelota, Raqueta, Marcador, Cursor
 from utils import *
 from functions import draw_field_BB, draw_field_tennis,draw_pong_field
 class Partida:  
@@ -79,7 +79,7 @@ class MenuV2:
         self.posicion_bloque = screenY//2+15
         self.counter = 0
         self.color_bloque = color_blanco
-       
+        self.cursor = Cursor()
         
         
     def menu_main(self):
@@ -110,8 +110,8 @@ class MenuV2:
         self.menuScreen.blit(self.font_setting2,pos_2 )
         self.menuScreen.blit(self.font_setting3,pos_3 )
         self.menuScreen.blit(self.font_setting4,pos_4 )
-        pg.draw.rect(self.menuScreen,self.color_bloque,(screenX//3 - 30,self.posicion_bloque,15,15))
-        
+        #pg.draw.rect(self.menuScreen,self.color_bloque,(screenX//3 - 30,self.posicion_bloque,15,15))
+        self.cursor.show(self.menuScreen)
         if self.counter < 300:
                     self.color_bloque = color_blanco
         if self.counter > 600:
