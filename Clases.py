@@ -234,20 +234,19 @@ class Marcador():
         mainScreen.blit(self.font_n2, (screenX//2 +100, 10))
        
 class Boton():
-    def __init__(self,name, w,h, pos_x, pos_y):
+    def __init__(self,name, w,h, pos):
         self.name = name
-        self.pos_x= pos_x
-        self.pos__y = pos_y
+        self.pos = pos
         self.w = w
         self.h  = h
         self.super = pg.Surface((self.w, self.h), pg.SRCALPHA)
         self.super.fill((255, 255, 255, 128))
-        self.font = pg.font.SysFont("Pixellari", 50)
+        self.font = pg.font.SysFont("Pixellari", 60)
     def show(self, screen):
-        self.title = self.font.render(self.name, True, color_negro)
+        self.title = self.font.render(self.name, True, color_blanco)
         self.super.fill((255, 255, 255, 128))
 
-        screen.blit(self.title, (self.pos_x,self.pos__y))
+        screen.blit(self.title, self.pos)
         
 
 

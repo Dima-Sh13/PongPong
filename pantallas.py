@@ -106,10 +106,10 @@ class MenuV2:
         self.font_setting2 = self.font_font_main.render("Paddle Size",True, color_blanco)
         self.font_setting3 = self.font_font_main.render("Music", True,color_blanco)
         self.font_setting4 = self.font_font_main.render("Back", True, color_blanco)
-        self.menuScreen.blit(self.font_setting1, (screenX//3,screenY//2))
-        self.menuScreen.blit(self.font_setting2,(screenX//3,screenY//2 +self.font_menu) )
-        self.menuScreen.blit(self.font_setting3,(screenX//3,screenY//2 +self.font_menu*2) )
-        self.menuScreen.blit(self.font_setting4,(screenX//3,screenY//2 +self.font_menu*3) )
+        self.menuScreen.blit(self.font_setting1, pos_1)
+        self.menuScreen.blit(self.font_setting2,pos_2 )
+        self.menuScreen.blit(self.font_setting3,pos_3 )
+        self.menuScreen.blit(self.font_setting4,pos_4 )
         pg.draw.rect(self.menuScreen,self.color_bloque,(screenX//3 - 30,self.posicion_bloque,15,15))
         
         if self.counter < 300:
