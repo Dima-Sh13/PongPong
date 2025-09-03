@@ -1,7 +1,7 @@
 import pygame as pg
 
-from PongPingApp.Clases import Pelota, Raqueta, Marcador
-from PongPingApp.utils import *
+from Clases import Pelota, Raqueta, Marcador
+from utils import *
 from functions import draw_field_BB, draw_field_tennis,draw_pong_field
 class Partida:  
     def __init__(self):
@@ -71,7 +71,7 @@ class MenuV2:
         self.font_context = pg.font.SysFont("Pixellari", 75)
         self.fontont = self.font_title.render("Pong Ping", True, color_blanco)
         self.context = self.font_context.render("Press Any Key", True, color_blanco)
-        self.transparencia = pg.Surface((1050, 700) )
+        self.transparencia = pg.Surface((screenX, screenY) )
         self.transparencia.fill( ( 91, 98, 91 ) )
         self.transparencia.set_alpha(200)
         self.font_font_main = pg.font.SysFont("Pixellari", 60)

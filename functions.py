@@ -1,4 +1,4 @@
-from PongPingApp.utils import *
+from utils import *
 
 def rebote(posicionX_raquetaI, poscionX_raquetaD,posicionY_raquetaI, posicionY_raquetaD,posicion_balon,vx_balon):
     dir_balon=posicion_balon[0]+vx_balon

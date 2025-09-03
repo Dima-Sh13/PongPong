@@ -1,6 +1,6 @@
 import pygame as pg
 import random as ra
-from PongPingApp.utils import *
+from utils import *
 """
 class Figura:
     def __init__(self, pos_x, pos_y, color =(255,255,255),vx=1, vy=1, w=40, h=40, radio =20):

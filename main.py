@@ -1,57 +1,69 @@
-import pygame as pg
-from Clases_Old import Raqueta, Pelota
-from functions import rebote
-from PongPingApp.utils import *
-pg.init()
-x_display = 1050; y_display = 700
-surface= pg.display.set_mode((screenX, screenY))
-pg.display.set_caption("PongPing")
+from Clases import Boton
+from utils import *
+#from pantallas import Partida, PartidaSolo, MenuV2
+"""
+class Marcador():
+    def __init__(self, n_jugador1, n_jugador2):
+        self.j_izq = n_jugador1
+        self.j_drch = n_jugador2
+        self.font1 = pg.font.SysFont("Pixellari", 45)
+        self.score_p1 = 0
+        self.score_p2 = 0
 
-#Definir tasa de refresco en nuestro bucle.
-tasaRefresco = pg.time.Clock()
-
-
-
-
-raquetaI = Raqueta(10, 300,w=20, h=100)
-raquetaD = Raqueta(1020, 300,w=20, h=100)
-
-pelota1 = Pelota(525,350,radio=10,vy=0)
-
-while game:
-    valorTasa = tasaRefresco.tick(300)#variable para controlar la velocidad entre tasas
-    #Agregamos Marcadores.
-    #Asignacion de tamanño y fuente
-    
-    marcador1_font = pg.font.SysFont("arial",30)
-    marcador2_font = pg.font.SysFont("arial",30)
-
-    marcador1 = marcador1_font.render("10", True, (255,255,255))
-    
-    surface.blit(marcador1,(200,100))
-    
-    
-
-    for eventos in pg.event.get():
-        print(eventos)
-        if eventos.type == pg.QUIT:
-            game = False
-
-    estadoTeclado = pg.key.get_pressed()
-
-    surface.fill(( 25, 133, 32))
-    pg.draw.line(surface,(255,255,255),(525,0),(525,700),10)
-    pg.draw.circle(surface,(255,255,255),(525,350), 120)
-    pg.draw.circle(surface,( 25, 133, 32),(525,350), 110)
-    pelota1.dibujar(surface)
-    raquetaI.dibujar(surface)
-    raquetaD.dibujar(surface)
-
-    raquetaI.movimiento(pg.K_w,pg.K_s)
-    raquetaD.movimiento(pg.K_UP, pg.K_DOWN)
-    pelota1.movimiento(x_display, y_display,raquetaI.pos_reb_x,raquetaI.p_rebote_Y,raquetaD.pos_reb_x - raquetaD.w,raquetaD.p_rebote_Y)
-    pg.display.flip()
+    def dibujar(self, mainScreen):
+        pg.draw.polygon(mainScreen, color_negro, [(ANCHO//4,0),(ANCHO//4 +50,0),(ANCHO//4 +50,50)] )
+        pg.draw.polygon(mainScreen, color_negro, [(ANCHO//4*3,0),(ANCHO//4*3-50,0),(ANCHO//4*3-50,50)] )  
+        pg.draw.rect(mainScreen, color_negro, (ANCHO//4 +50,0,ANCHO//4*2-100, 51))
+        for i in range(0, 50,5 ):
+            pg.draw.line(mainScreen, color_blanco, (ANCHO//2+10,i),(ANCHO//2+10,i),2)    
+        self.font_main = self.font1.render(str(self.score_p1), True, color_blanco)
+        self.font2 = self.font1.render(str(self.score_p2), True, color_blanco )
+        mainScreen.blit(self.font_main, (ANCHO//2 -25, 10))
+        mainScreen.blit(self.font2, (ANCHO//2 +25, 10))
+        self.font_n1 = self.font1.render((self.j_izq), True, color_blanco)
+        self.font_n2 = self.font1.render((self.j_drch), True, color_blanco)
+        mainScreen.blit(self.font_n1, (screenX//4 +75, 10))
+        mainScreen.blit(self.font_n2, (screenX//2 +100, 10))
+"""
 
 
-pg.quit()                
+import pygame  # Importamos la librería pygame
 
+# Inicializamos pygame
+pygame.init()
+
+# Definimos el tamaño de la ventana
+ANCHO = screenX
+ALTO = screenY
+
+# Creamos la ventana
+ventana = pygame.display.set_mode((ANCHO, ALTO))
+
+# Ponemos un título en la ventana
+pygame.display.set_caption("Ventana con fondo blanco")
+
+# Definimos el color blanco en formato RGB
+BLANCO = (255, 255, 255)
+
+# Bucle principal del juego
+ejecutando = True
+while ejecutando:
+    # Revisamos los eventos (como cerrar la ventana)
+    for evento in pygame.event.get():
+        if evento.type == pygame.QUIT:  # Si se cierra la ventana
+            ejecutando = False          # Terminamos el bucle
+
+    # Rellenamos la ventana con color blanco
+    ventana.fill(color_campo)
+    #objeto = Marcador("Dima","Mina")
+    #objeto.dibujar(ventana)
+    boton1 = Boton("settings",100,50,pos_1[0], pos_1[1] )
+    boton2 = Boton("Records", 100, 50, pos_2[0],pos_2[1])
+    boton1.show(ventana)
+    boton2.show(ventana)
+    print("i")
+    # Actualizamos la pantalla
+    pygame.display.flip()
+
+# Cerramos pygame correctamente
+pygame.quit()
