@@ -83,19 +83,34 @@ class MenuV2:
         
         
     def menu_main(self):
-            self.cursor.show(self.menuScreen)
+            #self.font_main = self.font_font_main.render("Play", True, color_blanco)
             boton1 = Boton("Play", pos_1)
             boton2 = Boton("Settings",pos_2)
             boton3 = Boton("Records",pos_3)
             boton4 = Boton("Quit", pos_4)
-            
+            """
+            self.font_main2 = self.font_font_main.render("Settings", True, color_blanco)
+            self.font_main3 = self.font_font_main.render("Records", True, color_blanco)
+            self.font_main4 = self.font_font_main.render("Quit", True, color_blanco)
+            """
 
             boton1.show(self.menuScreen)
             boton2.show(self.menuScreen)
             boton3.show(self.menuScreen)
             boton4.show(self.menuScreen)
-
-            
+            """
+            #self.menuScreen.blit(self.font_main, (screenX//3,screenY//2))
+            self.menuScreen.blit(self.font_main2,(screenX//3,screenY//2 +self.font_menu) )
+            self.menuScreen.blit(self.font_main3,(screenX//3,screenY//2 +self.font_menu*2) )
+            self.menuScreen.blit(self.font_main4,(screenX//3,screenY//2 +self.font_menu*3) )
+            """
+            pg.draw.rect(self.menuScreen,self.color_bloque,(screenX//3 - 30,self.posicion_bloque,15,15))
+            if self.counter < 300:
+                    self.color_bloque = color_blanco
+            if self.counter > 600:
+                self.color_bloque = color_campo
+                self.counter = 0        
+            self.counter += 1        
     def menu_setting(self):
         self.font_setting1 = self.font_font_main.render("Ball Speed", True, color_blanco)
         self.font_setting2 = self.font_font_main.render("Paddle Size",True, color_blanco)
