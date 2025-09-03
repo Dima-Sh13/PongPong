@@ -11,3 +11,8 @@ pos_1 = (screenX//3,screenY//2)
 pos_2 = (screenX//3,screenY//2 + 60)
 pos_3 = (screenX//3,screenY//2 + 60*2)
 pos_4 = (screenX//3,screenY//2 +60*3)
+pos_cursor_x = screenX//3 - 30
+pos_cursor_y = [screenY//2+15,
+               screenY//2 + (60 + 15), 
+              screenY//2 + (60*2 + 15),
+                screenY//2 + (60*3 + 15)]

@@ -248,7 +248,33 @@ class Boton():
 
         screen.blit(self.title, self.pos)
         
+class Cursor():
+    def __init__(self):
+        self.con= 0
+        self.index = 0
+        self.pos = pos_cursor_y[self.index]
+        self.index = 0
+    def show(self, screen):
+        self.pos = pos_cursor_y[self.index]
+        for eventos in pg.event.get():
+             print( eventos, self.index, self.pos)
+             if eventos.type == pg.KEYDOWN:
+                    if eventos.key == pg.K_DOWN:
+                       
+                       if self.pos < pos_cursor_y[3]:
+                            self.index += 1
+                    if eventos.key == pg.K_UP:
+                        if self.pos > pos_cursor_y[0]: 
+                            self.index -=1
+        
+        pg.draw.rect(screen,color_blanco,(pos_cursor_x,self.pos,15,15))
+        
+        
+    
+   
+                            
 
+        
 
 
 

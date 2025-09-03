@@ -1,4 +1,4 @@
-from Clases import Boton
+from Clases import Boton, Cursor
 from utils import *
 #from pantallas import Partida, PartidaSolo, MenuV2
 """
@@ -31,7 +31,7 @@ import pygame  # Importamos la librería pygame
 
 # Inicializamos pygame
 pygame.init()
-
+cursor = Cursor()
 # Definimos el tamaño de la ventana
 ANCHO = screenX
 ALTO = screenY
@@ -57,11 +57,14 @@ while ejecutando:
     ventana.fill(color_campo)
     #objeto = Marcador("Dima","Mina")
     #objeto.dibujar(ventana)
-    boton1 = Boton("settings",100,50,pos_1 )
+    boton1 = Boton("Settings",100,50,pos_1 )
     boton2 = Boton("Records", 100, 50, pos_2)
-    boton1.show(ventana)
-    boton2.show(ventana)
-    print("i")
+    #boton1.show(ventana)
+    #boton2.show(ventana)
+    
+    
+    cursor.show(ventana)
+    
     # Actualizamos la pantalla
     pygame.display.flip()
 

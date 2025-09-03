@@ -215,10 +215,10 @@ class MenuV2:
                     gameOn = False
                 if eventos.type == pg.KEYDOWN:
                     if eventos.key == pg.K_DOWN:
-                       if self.posicion_bloque < screenY//2 +self.font_menu*3:
+                       if self.posicion_bloque < pos_cursor_y[3]:
                             self.posicion_bloque += 60
                     if eventos.key == pg.K_UP:
-                        if self.posicion_bloque > screenY//2 +self.font_menu:
+                        if self.posicion_bloque > pos_cursor_y[0]: 
                             self.posicion_bloque -= 60
 
             self.menuScreen.fill((  28, 126, 28))
