@@ -1,5 +1,5 @@
 from utils import *
-
+from Clases import Boton
 def rebote(posicionX_raquetaI, poscionX_raquetaD,posicionY_raquetaI, posicionY_raquetaD,posicion_balon,vx_balon):
     dir_balon=posicion_balon[0]+vx_balon
     valores_rebote_raqI=[]
@@ -76,4 +76,14 @@ def menu_controller(index):
                             index -=1
        return index
 
-                    
+def show_menu(n1,n2,n3,n4, screen):
+        boton1 = Boton(n1, pos_1)
+        boton2 = Boton(n2,pos_2)
+        boton3 = Boton(n3,pos_3)
+        boton4 = Boton(n4, pos_4)
+        
+        return  boton1.show(screen), boton2.show(screen), boton3.show(screen), boton4.show(screen)
+       
+       
+                           
+        

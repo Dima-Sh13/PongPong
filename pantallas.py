@@ -2,7 +2,7 @@ import pygame as pg
 
 from Clases import Pelota, Raqueta, Marcador, Cursor,Boton
 from utils import *
-from functions import draw_field_BB, draw_field_tennis,draw_pong_field
+from functions import show_menu, menu_controller, draw_field_BB, draw_field_tennis,draw_pong_field
 class Partida:  
     def __init__(self):
         pg.init()
@@ -76,14 +76,15 @@ class MenuV2:
         self.transparencia.set_alpha(200)
         self.font_font_main = pg.font.SysFont("Pixellari", 60)
         self.font_menu = 60
-        self.posicion_bloque = screenY//2+15
         self.counter = 0
         self.color_bloque = color_blanco
         self.cursor = Cursor()
+        self.posicion_bloque = pos_cursor_y[0]
+         #screenY//2+15
         
         
     def menu_main(self):
-            self.cursor.show(self.menuScreen)
+            #self.cursor.show(self.menuScreen)
             boton1 = Boton("Play", pos_1)
             boton2 = Boton("Settings",pos_2)
             boton3 = Boton("Records",pos_3)
@@ -94,58 +95,49 @@ class MenuV2:
             boton2.show(self.menuScreen)
             boton3.show(self.menuScreen)
             boton4.show(self.menuScreen)
-
+            pg.draw.rect(self.menuScreen,self.color_bloque,(screenX//3 - 30,self.posicion_bloque,15,15))
             
     def menu_setting(self):
-        self.font_setting1 = self.font_font_main.render("Ball Speed", True, color_blanco)
-        self.font_setting2 = self.font_font_main.render("Paddle Size",True, color_blanco)
-        self.font_setting3 = self.font_font_main.render("Music", True,color_blanco)
-        self.font_setting4 = self.font_font_main.render("Back", True, color_blanco)
-        self.menuScreen.blit(self.font_setting1, pos_1)
-        self.menuScreen.blit(self.font_setting2,pos_2 )
-        self.menuScreen.blit(self.font_setting3,pos_3 )
-        self.menuScreen.blit(self.font_setting4,pos_4 )
-        #pg.draw.rect(self.menuScreen,self.color_bloque,(screenX//3 - 30,self.posicion_bloque,15,15))
-        self.cursor.show(self.menuScreen)
+        #show_menu("Ball Speed", "Paddle Size", "Music", "Back", self.menuScreen)
+        
+        boton1 = Boton("Ball Speed", pos_1)
+        boton2 = Boton("Paddle Size", pos_2)
+        boton3 = Boton("Music", pos_3)
+        boton4 = Boton("Back", pos_4)
+        boton1.show(self.menuScreen)
+        boton2.show(self.menuScreen)
+        boton3.show(self.menuScreen)
+        boton4.show(self.menuScreen)
+        pg.draw.rect(self.menuScreen,self.color_bloque,(screenX//3 - 30,self.posicion_bloque,15,15))
+        #self.cursor.show(self.menuScreen)
         if self.counter < 300:
                     self.color_bloque = color_blanco
         if self.counter > 600:
                 self.color_bloque = color_campo
                 self.counter = 0        
-        self.counter += 1        
+        self.counter += 1
+        
+
     def menu_ball_speed(self):
-        self.font_setting_ball = self.font_font_main.render("Slow", True, color_blanco)
-        self.font_setting_ball2 = self.font_font_main.render("Normal", True, color_blanco)
-        self.font_setting_ball3 = self.font_font_main.render("Fast", True, color_blanco)
-        self.font_setting_ball4 = self.font_font_main.render("Back", True, color_blanco)
-        self.menuScreen.blit(self.font_setting_ball, (screenX//3,screenY//2))
-        self.menuScreen.blit(self.font_setting_ball2,(screenX//3,screenY//2 +self.font_menu) )
-        self.menuScreen.blit(self.font_setting_ball3,(screenX//3,screenY//2 +self.font_menu*2) )
-        self.menuScreen.blit(self.font_setting_ball4,(screenX//3,screenY//2 +self.font_menu*3) )
+        boton1 = Boton("Slow", pos_1)
+        boton2 = Boton("Normal", pos_2)
+        boton3 = Boton("Fast", pos_3)
+        boton4 = Boton("Back", pos_4)
+        boton1.show(self.menuScreen)
+        boton2.show(self.menuScreen)
+        boton3.show(self.menuScreen)
+        boton4.show(self.menuScreen)
         pg.draw.rect(self.menuScreen,self.color_bloque,(screenX//3 - 30,self.posicion_bloque,15,15))
 
-
-
-        if self.counter < 300:
-                    self.color_bloque = color_blanco
-        if self.counter > 600:
-                self.color_bloque = color_campo
-                self.counter = 0        
-        self.counter += 1        
     def menu_partida(self):
-        self.font_main = self.font_font_main.render("Solo Mode", True, color_blanco)
-        self.font_main2 = self.font_font_main.render("VS. Mode", True, color_blanco)
-        self.font_main3 = self.font_font_main.render("Back", True, color_blanco)
-        self.menuScreen.blit(self.font_main, (screenX//3,screenY//2))
-        self.menuScreen.blit(self.font_main2,(screenX//3,screenY//2 +self.font_menu) )
-        self.menuScreen.blit(self.font_main3,(screenX//3,screenY//2 +self.font_menu*2) )
+        boton1 = Boton("Solo Mode", pos_1)
+        boton2 = Boton("VS. Mode", pos_2)
+        boton3 = Boton("Back", pos_3)
+        boton1.show(self.menuScreen)
+        boton2.show(self.menuScreen)
+        boton3.show(self.menuScreen)
         pg.draw.rect(self.menuScreen,self.color_bloque,(screenX//3 - 30,self.posicion_bloque,15,15))
-        if self.counter < 300:
-                    self.color_bloque = color_blanco
-        if self.counter > 600:
-                self.color_bloque = color_campo
-                self.counter = 0        
-        self.counter += 1        
+        
          
 
     def bucleMenuV2(self):
@@ -154,10 +146,12 @@ class MenuV2:
         menuSettings = False
         menuBallSpeed = False
         menuPartida = False
+        index = 0
         while gameOn:
             estadoTeclado = pg.key.get_pressed()
             self.tasa_refresco.tick(self.valor_tasa_refresco)
            
+            
             for eventos in pg.event.get():
                 if eventos.type == pg.KEYDOWN:
                     if eventos.key == pg.K_RETURN and self.posicion_bloque == screenY//2 +15 :
